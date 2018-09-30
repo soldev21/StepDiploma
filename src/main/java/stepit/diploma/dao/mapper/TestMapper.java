@@ -13,6 +13,12 @@ import java.util.List;
 @Mapper
 public interface TestMapper {
 
-    @Select("Select * from test")
-    List<Test> getAll();
+    @Select("Select * from public.test where is_active=1 and id = #{id}")
+    Test getTestById(Long id);
+
+    @Select("select * from public.test where is_active=1")
+    List<Test> getActiveTest();
+
+    @Select("select * from public.test")
+    List<Test> getAllTest();
 }
